@@ -1,0 +1,332 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step?,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*,Summary,ActionMaintenanceSummary*,NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?)>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="India Standard Time">
+<General productName="QuickTest Professional" productVer="10.00" os="" host="PC201256"><DocLocation><![CDATA[D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Test Scripts\Scenario1\TC1]]></DocLocation></General>
+<Doc rID="T1"   productName= "QuickTest Professional"  >
+<DName><![CDATA[TC1]]></DName>
+<Res><![CDATA[Scenario1_TC1]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table">
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T5">
+<Obj ><![CDATA[Invoke Application]]></Obj>
+<Details ><![CDATA[Invoking application present at D:\\Program Files\\HP\\QuickTest Professional\\samples\\flight\\app\\flight4a.exe]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:54]]></Time>
+<TimeTick>1359961674</TimeTick>
+<NodeArgs eType="User" icon="5" nRep="8" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Invoke Application]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:55]]></Time>
+<TimeTick>1359961675</TimeTick>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:55]]></Time>
+<TimeTick>1359961675</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="11" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Flight Reservation.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="10" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Flight Reservation]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Login]]></Obj>
+<Details plainTxt="False" ><![CDATA[Dialog]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:56]]></Time>
+<TimeTick>1359961676</TimeTick>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Login.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:56]]></Time>
+<TimeTick>1359961676</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="14" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Login.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:56]]></Time>
+<TimeTick>1359961676</TimeTick>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Run "D:\\Program Files\\HP\\QuickTest Professional\\samples\\flight\\app\\flight4a.exe",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "D:\\Program Files\\HP\\QuickTest Professional\\samples\\flight\\app\\flight4a.exe",1]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:56]]></Time>
+<TimeTick>1359961676</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="18" status="Passed" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Run "D:\\Program Files\\HP\\QuickTest Professional\\samples\\flight\\app\\flight4a.exe",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="8" nRep="17" status="Passed" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj ><![CDATA[Verify Invoke]]></Obj>
+<Details ><![CDATA[Application invoked successfully]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:57]]></Time>
+<TimeTick>1359961677</TimeTick>
+<NodeArgs eType="User" icon="5" nRep="19" status="Passed" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Verify Invoke]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[Login.Activate]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:57]]></Time>
+<TimeTick>1359961677</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="21" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Login.Activate]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[Agent Name:.SetText]]></Obj>
+<Details plainTxt="False" ><![CDATA["mercury"]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:57]]></Time>
+<TimeTick>1359961677</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="23" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Agent Name:.SetText]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[Password:.SetSecureText]]></Obj>
+<Details plainTxt="False" ><![CDATA["487c2bfbe0d183b71d9174b4cfefafc1b9ad1ca9"]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:57]]></Time>
+<TimeTick>1359961677</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="25" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Password:.SetSecureText]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:57]]></Time>
+<TimeTick>1359961677</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="27" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj ><![CDATA[Login]]></Obj>
+<Details ><![CDATA[Login credentials entered for user: mercury]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:57]]></Time>
+<TimeTick>1359961677</TimeTick>
+<NodeArgs eType="User" icon="5" nRep="28" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Login]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="13" status="Passed" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Login]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:59]]></Time>
+<TimeTick>1359961679</TimeTick>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["text", "Flight Reservation", "Flight Reservation", 10000]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:59]]></Time>
+<TimeTick>1359961679</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="31" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Flight Reservation.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj ><![CDATA[Verify Login]]></Obj>
+<Details ><![CDATA[Login successful]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:59]]></Time>
+<TimeTick>1359961679</TimeTick>
+<NodeArgs eType="User" icon="5" nRep="32" status="Passed" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Verify Login]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["text", "Flight Reservation", "Flight Reservation", 10000]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:59]]></Time>
+<TimeTick>1359961679</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="34" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Flight Reservation.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj ><![CDATA[Verify Login]]></Obj>
+<Details ><![CDATA[Login successful]]></Details>
+<Time><![CDATA[2/4/2013 - 12:37:59]]></Time>
+<TimeTick>1359961679</TimeTick>
+<NodeArgs eType="User" icon="5" nRep="35" status="Passed" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Verify Login]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj ><![CDATA[Close Application]]></Obj>
+<Details ><![CDATA[Application closed successfully]]></Details>
+<Time><![CDATA[2/4/2013 - 12:38:00]]></Time>
+<TimeTick>1359961680</TimeTick>
+<NodeArgs eType="User" icon="5" nRep="36" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Close Application]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="30" status="Passed" Source="D:\CRAFT\Source Code\QTP\CRAFT - Flight Application\Support Libraries\Driver.vbs" SourceLine="39" >
+<Disp><![CDATA[Flight Reservation]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2/4/2013 - 12:37:54" eTime="2/4/2013 - 12:38:00" passed="4" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" status="Passed" >
+<Disp><![CDATA[Action1 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Passed" >
+<Disp><![CDATA[TC1 Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="2/4/2013 - 12:37:53" eTime="2/4/2013 - 12:38:00" passed="4" failed="0" warnings="0" ><Param ><ParamName><![CDATA[IterationMode]]></ParamName><ParamVal><![CDATA[RunOneIterationOnly]]></ParamVal>
+</Param>
+<Param ><ParamName><![CDATA[StartIteration]]></ParamName><ParamVal><![CDATA[1]]></ParamVal>
+</Param>
+<Param ><ParamName><![CDATA[EndIteration]]></ParamName><ParamVal><![CDATA[1]]></ParamVal>
+</Param>
+<Param ><ParamName><![CDATA[TimeStamp]]></ParamName><ParamVal><![CDATA[Run_2-4-2013_12-37-45 PM]]></ParamVal>
+</Param>
+<Param paramInOut = "Out"><ParamName><![CDATA[StopExecution]]></ParamName><ParamVal><![CDATA[<Not Initialized>]]></ParamVal>
+</Param>
+</Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Passed" >
+<Disp><![CDATA[Test TC1 Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>

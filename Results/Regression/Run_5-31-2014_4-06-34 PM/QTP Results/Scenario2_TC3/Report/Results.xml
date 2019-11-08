@@ -1,0 +1,558 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="India Standard Time">
+<General productName="HP Unified Functional Testing" productVer="11.50" os="Windows 7" host="PC206201"><DocLocation><![CDATA[C:\Users\312356\Desktop\CRAFT - Flight Application\Test Scripts\Scenario2\TC3]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[TC3]]></DName>
+<Res><![CDATA[Scenario2_TC3]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[LoadFunctionLibrary]]></Obj>
+<Details plainTxt="False" ><![CDATA[LoadFunctionLibrary function passed]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:33]]></Time>
+<TimeTick>1401532713</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="8" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[LoadFunctionLibrary]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[LoadFunctionLibrary]]></Obj>
+<Details plainTxt="False" ><![CDATA[LoadFunctionLibrary function passed]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:33]]></Time>
+<TimeTick>1401532713</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="9" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[LoadFunctionLibrary]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[LoadFunctionLibrary]]></Obj>
+<Details plainTxt="False" ><![CDATA[LoadFunctionLibrary function passed]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:33]]></Time>
+<TimeTick>1401532713</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="10" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[LoadFunctionLibrary]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[LoadFunctionLibrary]]></Obj>
+<Details plainTxt="False" ><![CDATA[LoadFunctionLibrary function passed]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:33]]></Time>
+<TimeTick>1401532713</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="11" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[LoadFunctionLibrary]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj ><![CDATA[Invoke Application]]></Obj>
+<Details ><![CDATA[Invoking application present at C:\\Program Files\\HP\\Unified Functional Testing\\samples\\flight\\app\\flight4a.exe]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:35]]></Time>
+<TimeTick>1401532715</TimeTick>
+<NodeArgs eType="User" icon="6" nRep="12" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Invoke Application]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:36]]></Time>
+<TimeTick>1401532716</TimeTick>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:36]]></Time>
+<TimeTick>1401532716</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="15" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Flight Reservation.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="14" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Flight Reservation]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Login]]></Obj>
+<Details plainTxt="False" ><![CDATA[Dialog]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:37]]></Time>
+<TimeTick>1401532717</TimeTick>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[Login.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:37]]></Time>
+<TimeTick>1401532717</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="18" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Login.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:37]]></Time>
+<TimeTick>1401532717</TimeTick>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[Run "C:\\Program Files\\HP\\Unified Functional Testing\\samples\\flight\\app\\flight4a.exe",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "C:\\Program Files\\HP\\Unified Functional Testing\\samples\\flight\\app\\flight4a.exe",1]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:38]]></Time>
+<TimeTick>1401532718</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="22" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Run "C:\\Program Files\\HP\\Unified Functional Testing\\samples\\flight\\app\\flight4a.exe",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="9" nRep="21" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="17" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Login]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj ><![CDATA[Verify Invoke]]></Obj>
+<Details ><![CDATA[Application invoked successfully]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:38]]></Time>
+<TimeTick>1401532718</TimeTick>
+<NodeArgs eType="User" icon="6" nRep="23" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Verify Invoke]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[Login]]></Obj>
+<Details plainTxt="False" ><![CDATA[Dialog]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:38]]></Time>
+<TimeTick>1401532718</TimeTick>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[Login.Activate]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:38]]></Time>
+<TimeTick>1401532718</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="26" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Login.Activate]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Agent Name:.SetText]]></Obj>
+<Details plainTxt="False" ><![CDATA["acoe"]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:38]]></Time>
+<TimeTick>1401532718</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="28" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Agent Name:.SetText]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[Password:.SetSecureText]]></Obj>
+<Details plainTxt="False" ><![CDATA["487c2bfbe0d183b71d9174b4cfefafc1b9ad1ca9"]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:38]]></Time>
+<TimeTick>1401532718</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="30" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Password:.SetSecureText]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:38]]></Time>
+<TimeTick>1401532718</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="32" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="25" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Login]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj ><![CDATA[Login]]></Obj>
+<Details ><![CDATA[Login credentials entered for user: acoe]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:39]]></Time>
+<TimeTick>1401532719</TimeTick>
+<NodeArgs eType="User" icon="6" nRep="33" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Login]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:42]]></Time>
+<TimeTick>1401532722</TimeTick>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation.Activate]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:42]]></Time>
+<TimeTick>1401532722</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="36" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Flight Reservation.Activate]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[OpenOrder.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:42]]></Time>
+<TimeTick>1401532722</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="38" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[OpenOrder.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[Open Order]]></Obj>
+<Details plainTxt="False" ><![CDATA[Dialog]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:42]]></Time>
+<TimeTick>1401532722</TimeTick>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[Order No..Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["ON"]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:42]]></Time>
+<TimeTick>1401532722</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="41" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Order No..Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[Edit.SetText]]></Obj>
+<Details plainTxt="False" ><![CDATA["10"]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:42]]></Time>
+<TimeTick>1401532722</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="43" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Edit.SetText]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:42]]></Time>
+<TimeTick>1401532722</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="45" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="40" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Open Order]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="35" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Flight Reservation]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj ><![CDATA[Open Order]]></Obj>
+<Details ><![CDATA[Opening order corresponding to number: 10]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:42]]></Time>
+<TimeTick>1401532722</TimeTick>
+<NodeArgs eType="User" icon="6" nRep="46" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Open Order]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:46]]></Time>
+<TimeTick>1401532726</TimeTick>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[Open Order]]></Obj>
+<Details plainTxt="False" ><![CDATA[Dialog]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:46]]></Time>
+<TimeTick>1401532726</TimeTick>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[Flight Reservations.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:46]]></Time>
+<TimeTick>1401532726</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="52" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Flight Reservations.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="51" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Open Order]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="50" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Flight Reservation]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj ><![CDATA[Verify Open]]></Obj>
+<Details ><![CDATA[Order opened successfully]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:46]]></Time>
+<TimeTick>1401532726</TimeTick>
+<NodeArgs eType="User" icon="6" nRep="53" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Verify Open]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:47]]></Time>
+<TimeTick>1401532727</TimeTick>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation.Activate]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:47]]></Time>
+<TimeTick>1401532727</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="56" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Flight Reservation.Activate]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[OpenOrder.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:47]]></Time>
+<TimeTick>1401532727</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="58" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[OpenOrder.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[Open Order]]></Obj>
+<Details plainTxt="False" ><![CDATA[Dialog]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:47]]></Time>
+<TimeTick>1401532727</TimeTick>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[Order No..Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["ON"]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:47]]></Time>
+<TimeTick>1401532727</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="61" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Order No..Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[Edit.SetText]]></Obj>
+<Details plainTxt="False" ><![CDATA["11"]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:47]]></Time>
+<TimeTick>1401532727</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="63" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Edit.SetText]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA[OK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:47]]></Time>
+<TimeTick>1401532727</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="65" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[OK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="60" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Open Order]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="55" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Flight Reservation]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T42">
+<Obj ><![CDATA[Open Order]]></Obj>
+<Details ><![CDATA[Opening order corresponding to number: 11]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:47]]></Time>
+<TimeTick>1401532727</TimeTick>
+<NodeArgs eType="User" icon="6" nRep="66" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Open Order]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T43">
+<Obj plainTxt="False" ><![CDATA[Flight Reservation]]></Obj>
+<Details plainTxt="False" ><![CDATA[Window]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:49]]></Time>
+<TimeTick>1401532729</TimeTick>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[Open Order]]></Obj>
+<Details plainTxt="False" ><![CDATA[Dialog]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:49]]></Time>
+<TimeTick>1401532729</TimeTick>
+<Step rID="T45">
+<Obj plainTxt="False" ><![CDATA[Flight Reservations.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:49]]></Time>
+<TimeTick>1401532729</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="72" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Flight Reservations.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="8" nRep="71" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Open Order]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="70" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Flight Reservation]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T46">
+<Obj ><![CDATA[Verify Open]]></Obj>
+<Details ><![CDATA[Order opened successfully]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:49]]></Time>
+<TimeTick>1401532729</TimeTick>
+<NodeArgs eType="User" icon="6" nRep="73" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Verify Open]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T47">
+<Obj ><![CDATA[Close Application]]></Obj>
+<Details ><![CDATA[Application closed successfully]]></Details>
+<Time><![CDATA[5/31/2014 - 16:08:49]]></Time>
+<TimeTick>1401532729</TimeTick>
+<NodeArgs eType="User" icon="6" nRep="74" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Close Application]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="5/31/2014 - 16:08:32" eTime="5/31/2014 - 16:08:53" passed="8" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" status="Passed" >
+<Disp><![CDATA[Action1 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Passed" >
+<Disp><![CDATA[TC3 Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="5/31/2014 - 16:08:31" eTime="5/31/2014 - 16:08:53" passed="8" failed="0" warnings="0" ><Param ><ParamName><![CDATA[IterationMode]]></ParamName><ParamVal><![CDATA[RunOneIterationOnly]]></ParamVal>
+</Param>
+<Param ><ParamName><![CDATA[StartIteration]]></ParamName><ParamVal><![CDATA[1]]></ParamVal>
+</Param>
+<Param ><ParamName><![CDATA[EndIteration]]></ParamName><ParamVal><![CDATA[1]]></ParamVal>
+</Param>
+<Param ><ParamName><![CDATA[TimeStamp]]></ParamName><ParamVal><![CDATA[Run_5-31-2014_4-06-34 PM]]></ParamVal>
+</Param>
+<Param paramInOut = "Out"><ParamName><![CDATA[StopExecution]]></ParamName><ParamVal><![CDATA[<Not Initialized>]]></ParamVal>
+</Param>
+</Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Passed" >
+<Disp><![CDATA[Test TC3 Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>

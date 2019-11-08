@@ -1,0 +1,41 @@
+<project name="HelloWorld" basedir="." default="main">
+	<property name="tests.gui.dir" value="C:\ACoE In-house tools\CRAFT - QTP - Flight Application" />
+	<property name="testset.name" value="Sanity" />
+	
+	<property name="build.dir" value="build" />
+	<property name="build.testreports.dir" value="${build.dir}\testreports" />
+	
+	<target name="clean">
+		<echo message="Cleaning up old builds..." />
+		<delete dir="${build.dir}" />
+	</target>
+	
+	<!-- include project build code here as applicable -->
+	
+	<target name="qtp-ui-tests" depends="clean">
+		<mkdir dir="${build.testreports.dir}" />
+		<mkdir dir="${build.testreports.dir}\craft" />
+		
+		<echo message="Launching '${tests.gui.dir}\InitScript.vbs' 
+			'${testset.name}' '${basedir}\${build.testreports.dir}\craft'" />
+		
+		<exec executable="cscript" resultproperty="qtp.test.status">
+			<arg value="${tests.gui.dir}\InitScript.vbs" />
+			<arg value="${testset.name}" />
+			<arg value="${basedir}\${build.testreports.dir}\craft" />
+			<!-- The 2 arguments above are optional. If left unspecified,
+			a fresh folder with timestamp will be automatically created to store the test reports,
+			& the TestSet (RunConfiguration) specified in the framework's "Global Settings.xml" will be used -->
+		</exec>
+		
+		<fail message="QTP tests failed!">
+			<condition>
+				<not>
+					<equals arg1="${qtp.test.status}" arg2="0"/>
+				</not>
+			</condition>
+		</fail>
+	</target>
+	
+	<target name="main" depends="clean,qtp-ui-tests" />
+</project>

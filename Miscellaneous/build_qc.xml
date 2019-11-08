@@ -1,0 +1,56 @@
+<project name="HelloWorld" basedir="." default="main">
+	<property name="tests.gui.runner.dir" value="C:\ACoE In-house tools\CRAFT - QTP - Flight Application" />
+	<property name="testplan.testcases.path" value="[ALM] Subject\CRAFT - Flight Application - Updated" />
+	<property name="testresources.framework.path" value="C:\ACoE In-house tools\CRAFT - QTP - Flight Application" />
+	<property name="testset.path" value="Root\CRAFT - Flight Application - Updated" />
+	<property name="testset.name" value="Sanity" />
+	
+	<property environment="environment" />
+	
+	<property name="build.dir" value="build" />
+	<property name="build.testreports.dir" value="${build.dir}\testreports" />
+	
+	<target name="clean">
+		<echo message="Cleaning up old builds..." />
+		<delete dir="${build.dir}" />
+	</target>
+	
+	<target name="qtp-ui-tests" depends="clean">
+		<mkdir dir="${build.testreports.dir}" />
+		<mkdir dir="${build.testreports.dir}\craft" />
+		
+		<echo message="Launching '${tests.gui.runner.dir}\InitScript_QC.vbs' 
+						'${testplan.testcases.path}' '${testresources.framework.path}'
+						'${testset.path}' '${testset.name}'" />
+		
+		<exec executable="cscript" resultproperty="qtp.test.status">
+			<arg value="${tests.gui.runner.dir}\InitScript_QC.vbs" />
+			<arg value="${testplan.testcases.path}" />
+			<arg value="${testresources.framework.path}" />
+			<arg value="${testset.path}" />
+			<arg value="${testset.name}" />
+			<!-- The 4 arguments above are optional. If left unspecified,
+			the values specified in the framework's "InitScript_QC.vbs" will be used -->
+		</exec>
+		
+		<fail message="QTP tests failed!">
+			<condition>
+				<not>
+					<equals arg1="${qtp.test.status}" arg2="0"/>
+				</not>
+			</condition>
+		</fail>
+	</target>
+	
+	<target name="publish-test-report" depends="qtp-ui-tests">
+		<copy todir="${build.testreports.dir}\craft">
+			<fileset dir="${environment.TEMP}\Run_mm-dd-yyyy_hh-mm-ss_XX\Summary Report">
+				<include name="HTML Results\Summary.html" />
+			</fileset>
+		</copy>
+		
+		<echo message="Summary report published! Refer to HP ALM for detailed test reports" />
+	</target>
+	
+	<target name="main" depends="clean,publish-test-report" />
+</project>
